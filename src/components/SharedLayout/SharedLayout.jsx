@@ -1,7 +1,7 @@
-import { Header, Nav, Main } from './Layout.styled';
+import { Header, Nav, Main } from './SharedLayout.styled';
 const { NavLink, Outlet } = require('react-router-dom');
 
-const Layout = () => {
+const SharedLayout = () => {
   return (
     <div>
       <Header>
@@ -18,4 +18,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default SharedLayout;

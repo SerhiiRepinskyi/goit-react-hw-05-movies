@@ -17,7 +17,7 @@ export const Nav = styled.nav`
   }
 
   & a {
-    text-decoration-line: none;
+    text-decoration: none;
   }
 `;
 
