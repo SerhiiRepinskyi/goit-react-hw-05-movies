@@ -20,7 +20,29 @@ export async function fetchTrendMovies() {
 // Запит на фільм по Id
 export async function fetchMovieById( id ) {
   const response = await axios.get(
-    `${BASE_URL}/3/movie/${id}?api_key=${API_KEY}&language=${LANGUAGE}`
+    `${BASE_URL}/3/${MEDIA_TYPE}/${id}?api_key=${API_KEY}&language=${LANGUAGE}`
+  );
+  if (!response.status) {
+    throw new Error(response.status);
+  }
+  return response.data;
+}
+
+// Запит на акторський склад (Cast) фільму по Id
+export async function fetchMovieCast(id) {
+  const response = await axios.get(
+    `${BASE_URL}/3/${MEDIA_TYPE}/${id}/credits?api_key=${API_KEY}&language=${LANGUAGE}`
+  );
+  if (!response.status) {
+    throw new Error(response.status);
+  }
+  return response.data;
+}
+
+// Запит на відгуки (Reviews) фільму по Id
+export async function fetchMovieReviews(id) {
+  const response = await axios.get(
+    `${BASE_URL}/3/${MEDIA_TYPE}/${id}/reviews?api_key=${API_KEY}&language=${LANGUAGE}`
   );
   if (!response.status) {
     throw new Error(response.status);

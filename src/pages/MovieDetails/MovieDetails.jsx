@@ -46,8 +46,8 @@ const MovieDetails = () => {
       {isLoading && <Loader />}
       {error && (
         <div>
-          Error: {error.message}. Sorry, there are not movie data. Please try
-          again later!
+          Error: {error.message}. Sorry, there is no data for the selected
+          movie.
         </div>
       )}
       {/* Картка для відображення вибраного фільму */}

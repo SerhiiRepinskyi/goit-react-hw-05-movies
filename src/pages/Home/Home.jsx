@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { fetchTrendMovies } from 'services/themoviedbAPI';
 import Loader from 'components/Loader';
 import MoviesList from 'components/MoviesList';
-import { Message } from './Home.styled';
+// import { Message } from './Home.styled';
 
 const Home = () => {
   const [trendMovies, setTrendMovies] = useState([]);
@@ -35,10 +35,10 @@ const Home = () => {
       {isLoading && <Loader />}
 
       {error && (
-        <Message>
-          `Error: {error.message}. Sorry, there are not trending movies. Please
+        <parent>
+          `Error: {error.message} Sorry, there are not trending movies. Please
           try again later!`
-        </Message>
+        </parent>
       )}
 
       <MoviesList movies={trendMovies} />
