@@ -13,6 +13,8 @@ const Cast = () => {
 
   // Запит на акторський склад (Cast) фільму по Id
   useEffect(() => {
+    if (!movieId) return;
+
     const getMovieCast = async movieId => {
       setIsLoading(true);
       try {
@@ -28,9 +30,7 @@ const Cast = () => {
       }
     };
 
-    if (movieId) {
-      getMovieCast(movieId);
-    }
+    getMovieCast(movieId);
   }, [movieId]);
 
   return (

@@ -19,9 +19,9 @@ const Home = () => {
           throw new Error('No data! :-(');
         }
         setTrendMovies(response.results); // Записуємо в стейт results з API
-      } catch (error) {
-        setError(error);
-        // console.error('Error:', error);
+      } catch (errorCaught) {
+        setError(errorCaught);
+        // console.error('Error:', errorCaught);
       } finally {
         setIsLoading(false);
       }
@@ -35,10 +35,10 @@ const Home = () => {
       {isLoading && <Loader />}
 
       {error && (
-        <parent>
-          `Error: {error.message} Sorry, there are not trending movies. Please
-          try again later!`
-        </parent>
+        <p>
+          Error: {error.message} Sorry, there are not trending movies. Please
+          try again later!
+        </p>
       )}
 
       <MoviesList movies={trendMovies} />

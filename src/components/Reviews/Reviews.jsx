@@ -11,6 +11,8 @@ const Reviews = () => {
 
   // Запит на відгуки (Reviews) фільму по Id
   useEffect(() => {
+    if (!movieId) return;
+
     const getMovieReviews = async movieId => {
       setIsLoading(true);
       try {
@@ -27,9 +29,7 @@ const Reviews = () => {
       }
     };
 
-    if (movieId) {
-      getMovieReviews(movieId);
-    }
+    getMovieReviews(movieId);
   }, [movieId]);
 
   return (
