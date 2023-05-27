@@ -17,8 +17,19 @@ export async function fetchTrendMovies() {
   return response.data;
 }
 
-// Запит на фільм по Id
-export async function fetchMovieById( id ) {
+// Запит на пошук фільму за ключовим словом
+export async function fetchMovieByName(searchQuery) {
+  const response = await axios.get(
+    `${BASE_URL}/3/search/${MEDIA_TYPE}?api_key=${API_KEY}&language=${LANGUAGE}&query=${searchQuery}&page=1&include_adult=false`
+  );
+  if (!response.status) {
+    throw new Error(response.status);
+  }
+  return response.data;
+}
+
+// Запит повної інформації про фільм за Id
+export async function fetchMovieById(id) {
   const response = await axios.get(
     `${BASE_URL}/3/${MEDIA_TYPE}/${id}?api_key=${API_KEY}&language=${LANGUAGE}`
   );
@@ -28,7 +39,7 @@ export async function fetchMovieById( id ) {
   return response.data;
 }
 
-// Запит на акторський склад (Cast) фільму по Id
+// Запит на акторський склад (Cast) фільму за Id
 export async function fetchMovieCast(id) {
   const response = await axios.get(
     `${BASE_URL}/3/${MEDIA_TYPE}/${id}/credits?api_key=${API_KEY}&language=${LANGUAGE}`
@@ -39,7 +50,7 @@ export async function fetchMovieCast(id) {
   return response.data;
 }
 
-// Запит на відгуки (Reviews) фільму по Id
+// Запит відгуків (Reviews) про фільм за Id
 export async function fetchMovieReviews(id) {
   const response = await axios.get(
     `${BASE_URL}/3/${MEDIA_TYPE}/${id}/reviews?api_key=${API_KEY}&language=${LANGUAGE}`
@@ -49,5 +60,3 @@ export async function fetchMovieReviews(id) {
   }
   return response.data;
 }
-
-

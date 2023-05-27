@@ -7,7 +7,7 @@ import Movies from 'pages/Movies';
 import MovieDetails from 'pages/MovieDetails';
 import Cast from 'components/Cast'
 import Reviews from 'components/Reviews';
-// import NotFound from 'pages/NotFound';
+import NotFound from 'pages/NotFound';
 
 export const App = () => {
   return (
@@ -21,7 +21,7 @@ export const App = () => {
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
-        {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       {/* <ToastContainer autoClose={2000} position="top-center" theme="colored" /> */}
