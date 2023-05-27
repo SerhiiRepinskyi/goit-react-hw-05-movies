@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+// import { ToastContainer } from 'react-toastify';
 
 import SharedLayout from 'components/SharedLayout';
 import Home from 'pages/Home';
@@ -22,6 +23,8 @@ export const App = () => {
         </Route>
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
+
+      {/* <ToastContainer autoClose={2000} position="top-center" theme="colored" /> */}
     </div>
   );
 };

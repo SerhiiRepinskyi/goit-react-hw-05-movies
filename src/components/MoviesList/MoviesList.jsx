@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { MovieItem } from './MoviesList.styled';
 
 const MoviesList = ({ movies }) => {
-  const location = useLocation(); // ??????????
+  const location = useLocation();
 
   return (
     <ul>
       {movies.map(({ id, title }) => (
         <MovieItem key={id}>
-          <Link state={{ from: location }} to={`/movies/${id}`}>
+          <Link to={`/movies/${id}`} state={{ from: location }}>
             {title}
           </Link>
         </MovieItem>
@@ -21,8 +21,8 @@ const MoviesList = ({ movies }) => {
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
-      title: PropTypes.string,
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
     })
   ).isRequired,
 };

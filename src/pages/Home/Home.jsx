@@ -2,14 +2,16 @@ import { useState, useEffect } from 'react';
 import { fetchTrendMovies } from 'services/themoviedbAPI';
 import Loader from 'components/Loader';
 import MoviesList from 'components/MoviesList';
+import { Message } from './Home.styled';
 
 const Home = () => {
   const [trendMovies, setTrendMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
 
+  // Запит на трендові фільми
   useEffect(() => {
-    const fetchTrendingMovies = async () => {
+    const getTrendMovies = async () => {
       setIsLoading(true);
       try {
         const response = await fetchTrendMovies();
@@ -24,15 +26,21 @@ const Home = () => {
         setIsLoading(false);
       }
     };
-    fetchTrendingMovies();
+    getTrendMovies();
   }, []);
 
   return (
     <>
-      <h1>Trending today</h1>
+      <h2>Trending today</h2>
       {isLoading && <Loader />}
-      {error && <div>`Error: {error} There are not movies!`</div>}
-      {/* {error && <Text>{error} There are not movies</Text>} */}
+
+      {error && (
+        <Message>
+          `Error: {error.message}. Sorry, there are not trending movies. Please
+          try again later!`
+        </Message>
+      )}
+
       <MoviesList movies={trendMovies} />
     </>
   );
