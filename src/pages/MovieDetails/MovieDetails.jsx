@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
 import { fetchMovieById } from 'services/themoviedbAPI';
 import Loader from 'components/Loader';
@@ -42,7 +42,6 @@ const MovieDetails = () => {
       <Link to={backLinkHref.current}>
         <button type="button">Go back</button>
       </Link>
-
       {isLoading && <Loader />}
       {error && (
         <div>
@@ -53,10 +52,10 @@ const MovieDetails = () => {
       {/* Картка для відображення вибраного фільму */}
       <MovieCard selectedMovieData={movieData} />
 
-      {/* Відкладений рендеринг дочірніх компонентів */}
-      {/* <Suspense fallback={<LoadingIndicator />}> */}
-      <Outlet />
-      {/* </Suspense> */}
+      {/* Рендеринг дочірніх компонентів лише за потреби*/}
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
