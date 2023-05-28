@@ -1,13 +1,12 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 // import { ToastContainer } from 'react-toastify';
 
 import SharedLayout from 'components/SharedLayout';
 import Home from 'pages/Home';
 import Movies from 'pages/Movies';
 import MovieDetails from 'pages/MovieDetails';
-import Cast from 'components/Cast'
+import Cast from 'components/Cast';
 import Reviews from 'components/Reviews';
-import NotFound from 'pages/NotFound';
 
 export const App = () => {
   return (
@@ -21,7 +20,7 @@ export const App = () => {
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
 
       {/* <ToastContainer autoClose={2000} position="top-center" theme="colored" /> */}
