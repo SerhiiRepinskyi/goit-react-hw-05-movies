@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { fetchTrendMovies } from 'services/themoviedbAPI';
 import Loader from 'components/Loader';
 import MoviesList from 'components/MoviesList';
-// import { Message } from './Home.styled';
+import { Section, Title } from './Home.styled';
 
 const Home = () => {
   const [trendMovies, setTrendMovies] = useState([]);
@@ -30,8 +30,8 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-      <h2>Trending today</h2>
+    <Section>
+      <Title>Trending today</Title>
       {isLoading && <Loader />}
 
       {error && (
@@ -42,7 +42,7 @@ const Home = () => {
       )}
 
       <MoviesList movies={trendMovies} />
-    </>
+    </Section>
   );
 };
 

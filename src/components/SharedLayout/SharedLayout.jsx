@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Header, Nav, Main } from './SharedLayout.styled';
+import { Header, Nav } from './SharedLayout.styled';
 const { NavLink, Outlet } = require('react-router-dom');
 
 const SharedLayout = () => {
@@ -12,11 +12,12 @@ const SharedLayout = () => {
         </Nav>
       </Header>
 
-      <Main>
-        <Suspense fallback={ <div>Loading...</div>}>
+      <main>
+        {/* Рендеринг дочірніх компонентів лише за потреби*/}
+        <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
         </Suspense>
-      </Main>
+      </main>
     </>
   );
 };

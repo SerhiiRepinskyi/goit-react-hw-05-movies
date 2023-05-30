@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-// import { ToastContainer } from 'react-toastify';
 import SharedLayout from 'components/SharedLayout';
 
 // Поділ коду - маршрут/компонент завантажиться лише за потреби
@@ -24,8 +23,6 @@ export const App = () => {
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-
-      {/* <ToastContainer autoClose={2000} position="top-center" theme="colored" /> */}
     </div>
   );
 };

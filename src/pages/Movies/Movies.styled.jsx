@@ -1,5 +1,5 @@
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
-// export const Div = styled.div`
-//   color: black;
-// `;
+export const Section = styled.section`
+  padding: 20px;
+`;

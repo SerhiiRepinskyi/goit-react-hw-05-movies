@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from 'services/themoviedbAPI';
 import Loader from 'components/Loader';
+import { ReviewsList, ReviewsItem } from './Reviews.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -37,16 +38,18 @@ const Reviews = () => {
       {isLoading && <Loader />}
       {error && <p>We don't have any reviews for this movie.</p>}
 
-      <ul>
+      <ReviewsList>
         {movieReviews.map(({ id, author, content }) => (
-          <li key={id}>
+          <ReviewsItem key={id}>
             <p>
-              <b>Author: {author}</b>
+              <b>
+                Author: <em>{author}</em>
+              </b>
             </p>
             <p>{content}</p>
-          </li>
+          </ReviewsItem>
         ))}
-      </ul>
+      </ReviewsList>
     </>
   );
 };

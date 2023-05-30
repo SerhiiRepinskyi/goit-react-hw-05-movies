@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef, Suspense } from 'react';
-import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
+import { useParams, useLocation, Outlet } from 'react-router-dom';
 import { fetchMovieById } from 'services/themoviedbAPI';
 import Loader from 'components/Loader';
 import MovieCard from 'components/MovieCard';
+import { Section, LinkStyled } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -36,12 +37,11 @@ const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <>
+    <Section>
       {/* Link для повернення на попередню сторінку */}
       {/* Без використання useRef: to={location?.state?.from ?? '/'} */}
-      <Link to={backLinkHref.current}>
-        <button type="button">Go back</button>
-      </Link>
+      <LinkStyled to={backLinkHref.current}>Go back</LinkStyled>
+
       {isLoading && <Loader />}
       {error && (
         <div>
@@ -49,6 +49,7 @@ const MovieDetails = () => {
           movie.
         </div>
       )}
+
       {/* Картка для відображення вибраного фільму */}
       <MovieCard selectedMovieData={movieData} />
 
@@ -56,7 +57,7 @@ const MovieDetails = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
-    </>
+    </Section>
   );
 };
 

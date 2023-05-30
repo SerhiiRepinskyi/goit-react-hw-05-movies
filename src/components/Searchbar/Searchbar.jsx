@@ -1,6 +1,4 @@
-import {} from './Searchbar.styled';
 import { useState } from 'react';
-// import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import {
   SearchForm,
@@ -20,13 +18,12 @@ const Searchbar = ({ onSubmit, movieName }) => {
   const handleSubmit = event => {
     event.preventDefault();
     // Відміняємо пошук по пустій стрічці
-    // if (searchQuery.trim() === '') {
-    //     toast.error('Hello! :-)) Finally enter your search query!');
-    //   return;
-    // }
+    if (searchQuery.trim() === '') {
+      alert('Hello! :-)) Finally enter your search query!');
+      return;
+    }
     // Передаємо через prop значення searchQuery в Movies
     onSubmit(searchQuery);
-    // onSubmit(searchQuery.trim().toLowerCase());
 
     // Очистка після submit
     // setSearchQuery('');

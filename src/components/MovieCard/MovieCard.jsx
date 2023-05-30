@@ -1,6 +1,13 @@
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import {} from './MovieCard.styled';
+import {
+  MovieCardContainer,
+  MovieImg,
+  MovieInfo,
+  GenresList,
+  MovieMoreInform,
+  MoreInformList,
+  LinkStyled,
+} from './MovieCard.styled';
 import { FaRegFileImage } from 'react-icons/fa';
 
 const MovieCard = ({ selectedMovieData }) => {
@@ -22,50 +29,49 @@ const MovieCard = ({ selectedMovieData }) => {
     : 'Not rated yet';
 
   return (
-    <div>
-      <div>
+    <>
+      <MovieCardContainer>
         {poster_path ? (
-          <img
+          <MovieImg
             src={`https://image.tmdb.org/t/p/w400/${poster_path}`}
             alt={title}
-            width="400"
+            width="300"
           />
         ) : (
           <FaRegFileImage
             style={{ display: 'block', width: '400px' }}
             color="rgb(60 80 60 )"
-            size={500}
+            size={400}
           />
         )}
-      </div>
 
-      <div>
-        <h1>
-          {title ?? 'Unknown'} ({releaseYear ?? releaseYear})
-        </h1>
-        <p>User score: {userScore}</p>
-        <h2>Overview</h2>
-        <p>{overview}</p>
-        <h3>Genres</h3>
-        <ul>
-          {genres && genres.map(({ id, name }) => <li key={id}>{name}</li>)}
-        </ul>
-      </div>
+        <MovieInfo>
+          <h1>
+            {title ?? 'Unknown'} ({releaseYear ?? releaseYear})
+          </h1>
+          <p>User score: {userScore}</p>
+          <h2>Overview</h2>
+          <p>{overview}</p>
+          <h3>Genres</h3>
+          <GenresList>
+            {genres && genres.map(({ id, name }) => <li key={id}>{name}</li>)}
+          </GenresList>
+        </MovieInfo>
+      </MovieCardContainer>
 
-      <div>
+      <MovieMoreInform>
         <p>Additional information</p>
 
-        <ul>
+        <MoreInformList>
           <li>
-            <Link to="cast">Cast</Link>
+            <LinkStyled to="cast">Cast</LinkStyled>
           </li>
-
           <li>
-            <Link to="reviews">Reviews</Link>
+            <LinkStyled to="reviews">Reviews</LinkStyled>
           </li>
-        </ul>
-      </div>
-    </div>
+        </MoreInformList>
+      </MovieMoreInform>
+    </>
   );
 };
 

@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieCast } from 'services/themoviedbAPI';
 import Loader from 'components/Loader';
-import { MdOutlineScreenLockPortrait } from 'react-icons/md';
-// import {} from './Cast.styled';
+import { FaPortrait } from 'react-icons/fa';
+import { CastList, CastItem } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -36,16 +36,11 @@ const Cast = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {error && (
-        <p>
-          Error: {error.message} Sorry, there is no information about the cast
-          of the selected movie.
-        </p>
-      )}
+      {error && <p>We don't have information about the cast of this movie.</p>}
 
-      <ul>
+      <CastList>
         {movieCast.map(({ id, profile_path, name, character }) => (
-          <li key={id}>
+          <CastItem key={id}>
             {profile_path ? (
               <div>
                 <img
@@ -54,18 +49,20 @@ const Cast = () => {
                 />
               </div>
             ) : (
-              <MdOutlineScreenLockPortrait
-                style={{ display: 'block' }}
+              <FaPortrait
                 // style={{ display: 'block', width: '100%' }}
-                color="rgb(120, 115, 115 )"
-                size={250}
+                style={{ display: 'block', width: '160px', height: '240px' }}
+                color="rgb(120, 115, 115)"
+                // size={250}
               />
             )}
-            <p>{name}</p>
+            <p>
+              <b>{name}</b>
+            </p>
             <p>Character: {character}</p>
-          </li>
+          </CastItem>
         ))}
-      </ul>
+      </CastList>
     </>
   );
 };
